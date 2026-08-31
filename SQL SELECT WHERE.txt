@@ -23,3 +23,58 @@ SELECT *
 FROM customers
 WHERE creditLimit BETWEEN 20000 AND 60000;
 7.
+SELECT *
+FROM customers
+WHERE country = "France" or country = "Spain" or country = "Italy";
+8.
+SELECT *
+FROM customers
+WHERE customerName LIKE "a%";
+9.
+SELECT *
+FROM customers
+WHERE customerName LIKE "%mini%";
+10.
+SELECT *
+FROM customers 
+WHERE salesRepEmployeeNumber IS NULL;
+11.
+SELECT firstName,lastName,jobTitle
+FROM employees
+WHERE jobTitle = "Sales Rep";
+12.
+SELECT *
+FROM employees
+WHERE officeCode = "1" or officeCode = "4" ;
+13.
+SELECT *
+FROM employees
+WHERE lastName LIKE "P%";
+14.
+SELECT productLine
+FROM products
+WHERE productLine = "Classic Cars";
+15.
+SELECT *
+FROM products
+WHERE buyPrice >50;
+16.
+SELECT *
+FROM products
+WHERE buyPrice <100 and quantityInStock > 1000;
+17.
+SELECT *
+FROM products
+WHERE productLine = "Motorcycles" or productLine = "Trucks and Buses";
+18.
+SELECT *
+FROM products
+WHERE not productScale LIKE "%1:18%";
+19.
+SELECT *
+FROM orders
+WHERE orderNumber > 10300 AND  status = "Shipped";
+20.
+SELECT *
+FROM payments
+WHERE customerNumber = "103" AND amount BETWEEN 10000 AND 50000;
