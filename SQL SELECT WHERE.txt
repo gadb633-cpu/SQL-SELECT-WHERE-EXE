@@ -1,0 +1,6 @@
+1.
+SELECT customerName,city
+FROM customers
+WHERE country = "France";
+2.
+
