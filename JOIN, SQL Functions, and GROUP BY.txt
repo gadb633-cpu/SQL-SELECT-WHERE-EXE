@@ -1,1 +1,127 @@
-
+1.
+SELECT c.customerName , o.orderNumber
+FROM customers as c
+JOIN orders as o
+ON o.customerNumber = c.customerNumber;
+2.
+SELECT c.customerName ,SUM(p.amount)
+FROM customers as c
+JOIN payments as p
+ON p.customerNumber = c.customerNumber
+GROUP BY c.customerName;
+3.
+SELECT c.customerName ,AVG(p.amount)
+FROM customers as c
+JOIN payments as p
+ON p.customerNumber = c.customerNumber
+GROUP BY c.customerName;
+4.
+SELECT c.customerName ,MAX(p.amount)
+FROM customers as c
+JOIN payments as p
+ON p.customerNumber = c.customerNumber
+GROUP BY c.customerName;
+5.
+SELECT e.firstName , e.lastName ,c.customerNumber
+FROM employees as e
+JOIN customers as c
+ON e.employeeNumber = c.salesRepEmployeeNumber;
+6.
+SELECT of.city,e.employeeNumber
+FROM offices as of
+JOIN employees as e
+ON of.officeCode = e.officeCode;
+7.
+SELECT o.status,SUM(od.orderLineNumber)
+FROM orders as o
+JOIN orderdetails as od
+ON o.orderNumber = od.orderNumber
+GROUP BY o.status;
+8.
+SELECT o.orderNumber,SUM(od.quantityOrdered)
+FROM orders as o
+JOIN orderdetails as od
+ON o.orderNumber = od.orderNumber
+GROUP BY o.orderNumber;
+9.
+SELECT pr.productName,SUM(o.quantityOrdered)
+FROM products as pr
+JOIN orderdetails as o
+ON pr.productCode = o.productCode
+GROUP BY pr.productName;
+10.
+SELECT pr.productName,AVG(o.priceEach)
+FROM products as pr
+JOIN orderdetails as o
+ON pr.productCode = o.productCode
+GROUP BY pr.productName;
+11.
+SELECT prl.productLine,SUM(pr.quantityInStock)
+FROM productlines as prl
+JOIN products as pr
+ON prl.productLine = pr.productLine
+GROUP BY prl.productLine;
+12.
+SELECT prl.productLine,AVG(pr.buyPrice)
+FROM productlines as prl
+JOIN products as pr
+ON prl.productLine = pr.productLine
+GROUP BY prl.productLine;
+13.
+SELECT prl.productLine,MAX(pr.MSRP)
+FROM productlines as prl
+JOIN products as pr
+ON prl.productLine = pr.productLine
+GROUP BY prl.productLine;
+14.
+SELECT c.customerName ,COUNT(o.customerNumber)
+FROM customers as c
+JOIN orders as o
+ON c.customerNumber =o.customerNumber
+WHERE o.status = "Shipped"
+GROUP BY c.customerNumber;
+15.
+SELECT c.customerName,SUM(p.amount)
+FROM customers as c
+JOIN payments as p
+ON c.customerNumber=p.customerNumber
+WHERE p.amount > 10000
+GROUP BY c.customerName;
+16.
+SELECT e.firstName ,e.lastName,COUNT(c.salesRepEmployeeNumber)
+FROM employees as e
+JOIN customers as c
+ON e.employeeNumber = c.salesRepEmployeeNumber
+WHERE c.country = "USA" or c.country = "Canada"
+GROUP BY e.employeeNumber;
+17.
+SELECT of.city,COUNT(e.employeeNumber)
+FROM offices as of
+JOIN employees as e
+ON of.officeCode=e.officeCode
+WHERE e.jobTitle = "Sales Rep"
+GROUP BY of.city;
+18.
+SELECT pl.productLine,SUM(od.quantityOrdered)
+FROM products as p
+JOIN productlines as pl
+ON p.productLine=pl.productLine
+JOIN orderdetails as od
+ON p.productCode=od.productCode
+GROUP BY pl.productLine;
+19.
+SELECT c.customerName,SUM(od.quantityOrdered)
+FROM customers as c
+JOIN orders as o
+ON c.customerNumber=o.customerNumber
+JOIN orderdetails as od
+ON od.orderNumber=o.orderNumber
+GROUP BY od.orderNumber;
+20.
+SELECT c.customerName,SUM(od.quantityOrdered*od.priceEach) as total_price
+FROM customers as c
+JOIN orders as o
+ON c.customerNumber=o.customerNumber
+JOIN orderdetails as od
+ON od.orderNumber=o.orderNumber
+GROUP BY c.customerName;
